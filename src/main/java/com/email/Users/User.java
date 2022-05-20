@@ -1,12 +1,13 @@
 package com.email.Users;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Scanner;
 
 public class User {
     private int id;
     private String firstname;
     private String lastname;
-    private Date dob;
+    private LocalDate dob;
     private String email;
     private String username;
     private String password;
@@ -15,7 +16,7 @@ public class User {
     private Address address;
 
 
-    public User(int id, String firstname, String lastname, Date dob, String email, String username, String password, role role) {
+    public User(int id, String firstname, String lastname, LocalDate dob, String email, String username, String password, role role) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -27,6 +28,31 @@ public class User {
         // this.address = new Address();
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public com.email.Users.role getRole() {
+        return role;
+    }
 }
 
 

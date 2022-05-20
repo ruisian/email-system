@@ -1,0 +1,92 @@
+DROP TABLE "user" CASCADE;
+DROP TABLE "role" CASCADE;
+DROP TABLE "address" CASCADE;
+DROP TABLE "email" CASCADE;
+DROP TABLE "emailarchive" CASCADE;
+DROP TABLE "appointment" CASCADE;
+DROP TABLE "location" CASCADE;
+
+
+CREATE TABLE "role" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT
+);
+
+CREATE TABLE "user" (
+	"id" SERIAL PRIMARY KEY,
+	"firstname" VARCHAR(30) NOT NULL,
+	"lastname" VARCHAR(30),
+	"dob" DATE,
+	"email" VARCHAR(30) UNIQUE,
+	"username" VARCHAR(20),
+	"password" VARCHAR(20),
+	"role_id" INT NOT NULL,
+	CONSTRAINT fk_role 
+		FOREIGN KEY (role_id)
+			REFERENCES role(id)
+);
+
+CREATE TABLE "address" (
+	"id" SERIAL PRIMARY KEY,
+	"user_id" INT NOT NULL,
+	"number" INT,
+	"city" TEXT,
+	"street" TEXT,
+	CONSTRAINT fk_user 
+		FOREIGN KEY (user_id)
+			REFERENCES "user"(id)
+);
+
+CREATE TABLE "email" (
+	"id" SERIAL PRIMARY KEY,
+	"from" TEXT NOT NULL,
+	"to" TEXT NOT NULL,
+	"subject" TEXT,
+	"body" TEXT,
+	"timestamp" TIMESTAMPTZ,
+	"isarchive" BOOLEAN,
+	CONSTRAINT fk_from 
+		FOREIGN KEY ("from")
+			REFERENCES "user"(email),
+	CONSTRAINT fk_to 
+		FOREIGN KEY ("to")
+			REFERENCES "user"(email)
+);
+
+CREATE TABLE "emailarchive" (
+	"id" SERIAL PRIMARY KEY,
+	"email_id" INT,
+	CONSTRAINT fk_email 
+		FOREIGN KEY (email_id)
+			REFERENCES email(id)
+);
+
+CREATE TABLE "location" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT
+);
+
+CREATE TABLE "appointment" (
+	"id" SERIAL PRIMARY KEY,
+	"from" TEXT NOT NULL,
+	"to" TEXT NOT NULL,
+	"subject" TEXT,
+	"timestamp" TIMESTAMPTZ,
+	"location_id" INT,
+	CONSTRAINT fk_from 
+		FOREIGN KEY ("from")
+			REFERENCES "user"(email),
+	CONSTRAINT fk_to 
+		FOREIGN KEY ("to")
+			REFERENCES "user"(email),
+	CONSTRAINT fk_location
+		FOREIGN KEY (location_id)
+			REFERENCES location(id)
+);
+
+INSERT INTO role VALUES (1, 'Admin');
+INSERT INTO role VALUES (2, 'User');
+INSERT INTO "user" VALUES (1, 'ming', 'xiao', '2000-01-01', 'xiaoming@company.com', 'xiaoming', 'xiaoming123', 1);
+INSERT INTO "user" VALUES (2, 'hua', 'xiao', '2000-01-02', 'xiaohua@company.com', 'xiaohua', 'xiaohua123', 2);
+INSERT INTO email VALUES (1, 'xiaoming@company.com', 'xiaohua@company.com', 'Importing meeting later', 'Hello, We need to have a meeting later.', current_timestamp, false); 
+
