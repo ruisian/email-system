@@ -9,17 +9,18 @@ import java.time.ZonedDateTime;
 import java.util.Scanner;
 
 public class SendEmailEntity {
-    static int count = 2;
+    static int emailCount = 7;
+    //static int appointmentCount = 0;
     public static void CreateNew(emailAppt type, User user) {
         if(type == emailAppt.Email) {
-            CreateEmail(user, count);
+            emailCount = CreateEmail(user, emailCount);
         } else if(type == emailAppt.Appointment) {
             CreateAppt();
         }
 
     }
 
-    private static void CreateEmail(User user, int count) {
+    private static int CreateEmail(User user, int count) {
 
         Scanner input = new Scanner (System.in);
         System.out.print("Send email to: ");
@@ -29,10 +30,11 @@ public class SendEmailEntity {
         System.out.println("Body: ");
         String body = input.nextLine();
         Email newEmail = new Email(count, user.getEmail(), to, subject, body, LocalDateTime.now(), false);
-        SendEmail(user, count, newEmail);
+        count = SendEmail(count, newEmail);
+        return count;
     }
 
-    private static void SendEmail(User user, int count, Email email) {
+    private static int SendEmail(int count, Email email) {
         // Email newMail = new Email(count, "xiaohua@company.com", "xiaoming@company.com", "RE: Please check", "Hi, I have checked that it is correct.", LocalDateTime.now(), false);
         String SQL = "INSERT INTO email " + "VALUES (?,?,?,?,?,?,?)";
         try (Connection con = HikariCPDataSource.getConnection()) {
@@ -46,7 +48,7 @@ public class SendEmailEntity {
             stmt.setBoolean(7, email.getIsArchived());
             int updated = stmt.executeUpdate();
             System.out.println("Email sent successfully!");
-            count++;
+            return ++count;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
