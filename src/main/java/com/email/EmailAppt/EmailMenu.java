@@ -27,11 +27,18 @@ public class EmailMenu {
             case "1":
                 System.out.println("List of Emails");
                 System.out.println("Enter a to choose emails to send to archive");
-                chosenPage = page.ListEmailsPage;
+                System.out.println("Enter q to return to previous menu");
+                // chosenPage = page.ListEmailsPage;
+                EmailList.ListEmails();
+                if(in.next().equals("b")){
+                    chosenPage = page.EmailMenuPage;
+                }
                 break;
             case "2":
                 System.out.println("Send New Email");
                 chosenPage = page.SendEmailPage;
+                emailAppt type = emailAppt.Email;
+//                SendEmailEntity.CreateNew(type);
                 break;
             case "3":
                 System.out.println("Find Email by Subject");

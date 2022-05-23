@@ -12,9 +12,9 @@ public class HikariCPDataSource {
     private static HikariDataSource ds;
 
     static {
-        config.setJdbcUrl("jdbc:h2:mem:test");
-        config.setUsername("user");
-        config.setPassword("password");
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/email_service");
+        config.setUsername("postgres");
+        config.setPassword("postgres");
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

@@ -34,7 +34,7 @@ public class App {
 //    }
 
     public static void main(String[] args) {
-        DBConnection.connect();
+        // DBConnection.connect();
 
         User admin1 = new User(1, "ming", "xiao", LocalDate.of(2000,1,1), "xiaoming@company.com", "xiaoming", "xiaoming123", role.Admin);
         User user1 = new User(2, "hua", "xiao", LocalDate.of(2000,1,2), "xiaohua@company.com", "xiaohua", "xiaohua123", role.User);
