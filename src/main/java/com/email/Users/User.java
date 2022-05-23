@@ -53,6 +53,10 @@ public class User {
     public com.email.Users.role getRole() {
         return role;
     }
+
+    public String getEmail() {
+        return email;
+    }
 }
 
 

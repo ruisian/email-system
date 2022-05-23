@@ -67,7 +67,7 @@ public class App {
                 case EmailMenuPage:
                     //System.out.println("Email menu");
                     prevPage = currentPage;
-                    currentPage = EmailMenu.Display();
+                    currentPage = EmailMenu.Display(currentUser);
                     break;
                 case AppointmentsMenuPage:
                     System.out.println("AppointmentsMenu");

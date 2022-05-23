@@ -16,9 +16,8 @@ public class EmailList {
     }
 
     private static void getEmails() {
-        String SQL = "SELECT id,subject FROM email";
-        try {
-            Connection con = HikariCPDataSource.getConnection();
+        String SQL = "SELECT id,emailfrom,emailto,subject FROM email";
+        try (Connection con = HikariCPDataSource.getConnection()) {
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery(SQL);
             displayEmails(res);
@@ -30,6 +29,8 @@ public class EmailList {
     private static void displayEmails(ResultSet res) throws SQLException {
         while (res.next()) {
             System.out.println(res.getString("id") + "\t"
+                    + res.getString("emailfrom") + "\t"
+                    + res.getString("emailto") + "\t"
                     + res.getString("subject"));
 
         }
