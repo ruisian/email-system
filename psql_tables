@@ -39,17 +39,17 @@ CREATE TABLE "address" (
 
 CREATE TABLE "email" (
 	"id" SERIAL PRIMARY KEY,
-	"from" TEXT NOT NULL,
-	"to" TEXT NOT NULL,
+	"emailfrom" TEXT NOT NULL,
+	"emailto" TEXT NOT NULL,
 	"subject" TEXT,
 	"body" TEXT,
 	"timestamp" TIMESTAMPTZ,
 	"isarchive" BOOLEAN,
 	CONSTRAINT fk_from 
-		FOREIGN KEY ("from")
+		FOREIGN KEY ("emailfrom")
 			REFERENCES "user"(email),
 	CONSTRAINT fk_to 
-		FOREIGN KEY ("to")
+		FOREIGN KEY ("emailto")
 			REFERENCES "user"(email)
 );
 
@@ -68,16 +68,16 @@ CREATE TABLE "location" (
 
 CREATE TABLE "appointment" (
 	"id" SERIAL PRIMARY KEY,
-	"from" TEXT NOT NULL,
-	"to" TEXT NOT NULL,
+	"emailfrom" TEXT NOT NULL,
+	"emailto" TEXT NOT NULL,
 	"subject" TEXT,
 	"timestamp" TIMESTAMPTZ,
 	"location_id" INT,
 	CONSTRAINT fk_from 
-		FOREIGN KEY ("from")
+		FOREIGN KEY ("emailfrom")
 			REFERENCES "user"(email),
 	CONSTRAINT fk_to 
-		FOREIGN KEY ("to")
+		FOREIGN KEY ("emailto")
 			REFERENCES "user"(email),
 	CONSTRAINT fk_location
 		FOREIGN KEY (location_id)
