@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class SendEmailEntity {
-    static int emailCount = 8;
+    static int emailCount = 2;
     //static int appointmentCount = 0;
     public static void createNew(EmailAppt type, User user) {
         if(type == EmailAppt.Email) {
@@ -34,7 +34,7 @@ public class SendEmailEntity {
     }
 
     private static int sendEmail(int count, Email email) {
-        String SQL = "INSERT INTO email " + "VALUES (?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO public.email " + "VALUES (?,?,?,?,?,?,?)";
         try (Connection con = HikariCPDataSource.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(SQL);
             stmt.setInt(1, email.getId());

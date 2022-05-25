@@ -15,7 +15,7 @@ public class EmailList {
     }
 
     private static void getEmails() {
-        String SQL = "SELECT id,emailfrom,emailto,subject FROM email";
+        String SQL = "SELECT id,emailfrom,emailto,subject FROM public.email";
         try (Connection con = HikariCPDataSource.getConnection()) {
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery(SQL);

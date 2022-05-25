@@ -4,16 +4,17 @@ import com.email.EmailAppt.EmailMenu;
 import com.email.Users.User;
 import com.email.Users.Role;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class App {
 
     // static volatile boolean keepRunning = true;
-    static User currentUser;
+    static User currentUser = null;
     static Page currentPage;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
          // DBConnection.connect();
 
         /*
@@ -21,17 +22,15 @@ public class App {
         should rewrite code to use REST API
         move to spring boot
         pom.xml
-        seperate actions in class
+        separate actions in class
         */
 
-        User admin1 = new User(1, "ming", "xiao", LocalDate.of(2000,1,1), "xiaoming@company.com", "xiaoming", "xiaoming123", Role.Admin);
-        User user1 = new User(2, "hua", "xiao", LocalDate.of(2000,1,2), "xiaohua@company.com", "xiaohua", "xiaohua123", Role.User);
-        currentUser = admin1;
+//        User admin1 = new User(1, "ming", "xiao", LocalDate.of(2000,1,1), "xiaoming@company.com", "xiaoming", "xiaoming123", Role.Admin);
+//        User user1 = new User(2, "hua", "xiao", LocalDate.of(2000,1,2), "xiaohua@company.com", "xiaohua", "xiaohua123", Role.User);
+        //currentUser = admin1;
 
         Boolean isAdmin = false;
-        if (currentUser.getRole().equals(Role.Admin)){
-            isAdmin = true;
-        }
+
 
         currentPage = Page.UserLoginPage;
         Page prevPage = currentPage;
@@ -40,10 +39,16 @@ public class App {
         Boolean toQuit = false;
 
         while (true) {
-            //run() /new menu start
+            // TODO
+            // run() //new menu start
             switch (currentPage){
                 case UserLoginPage:
-                    if (Login.login(currentUser)) {
+                    currentUser = Login.login();
+                    if (currentUser != null) {
+                        isAdmin = false;
+                        if (currentUser.getRole().equals(Role.Admin)){
+                            isAdmin = true;
+                        }
                         System.out.println("Logged in as " + currentUser.getLastname() + currentUser.getFirstname());
                         prevPage = currentPage;
                         currentPage = Page.MainMenuPage;
@@ -65,6 +70,9 @@ public class App {
                     LogOut.display(currentUser);
                     if(s.next().charAt(0) == 'y') {
                         toQuit = true;
+                    } else if(s.next().charAt(0) == 'l') {
+                        System.out.println("User logging out.");
+                        currentPage = Page.UserLoginPage;
                     } else {
                         currentPage = prevPage;
                     }

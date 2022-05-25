@@ -5,14 +5,16 @@ DROP TABLE "email" CASCADE;
 DROP TABLE "emailarchive" CASCADE;
 DROP TABLE "appointment" CASCADE;
 DROP TABLE "location" CASCADE;
+DROP SCHEMA public;
 
+CREATE SCHEMA public;
 
-CREATE TABLE "role" (
+CREATE TABLE public.role (
 	"id" SERIAL PRIMARY KEY,
 	"name" TEXT
 );
 
-CREATE TABLE "user" (
+CREATE TABLE public.user (
 	"id" SERIAL PRIMARY KEY,
 	"firstname" VARCHAR(30) NOT NULL,
 	"lastname" VARCHAR(30),
@@ -26,7 +28,7 @@ CREATE TABLE "user" (
 			REFERENCES role(id)
 );
 
-CREATE TABLE "address" (
+CREATE TABLE public.address (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT NOT NULL,
 	"number" INT,
@@ -37,7 +39,7 @@ CREATE TABLE "address" (
 			REFERENCES "user"(id)
 );
 
-CREATE TABLE "email" (
+CREATE TABLE public.email (
 	"id" SERIAL PRIMARY KEY,
 	"emailfrom" TEXT NOT NULL,
 	"emailto" TEXT NOT NULL,
@@ -53,7 +55,7 @@ CREATE TABLE "email" (
 			REFERENCES "user"(email)
 );
 
-CREATE TABLE "emailarchive" (
+CREATE TABLE public.emailarchive (
 	"id" SERIAL PRIMARY KEY,
 	"email_id" INT,
 	CONSTRAINT fk_email 
@@ -61,12 +63,12 @@ CREATE TABLE "emailarchive" (
 			REFERENCES email(id)
 );
 
-CREATE TABLE "location" (
+CREATE TABLE public.location (
 	"id" SERIAL PRIMARY KEY,
 	"name" TEXT
 );
 
-CREATE TABLE "appointment" (
+CREATE TABLE public.appointment (
 	"id" SERIAL PRIMARY KEY,
 	"emailfrom" TEXT NOT NULL,
 	"emailto" TEXT NOT NULL,
@@ -84,9 +86,9 @@ CREATE TABLE "appointment" (
 			REFERENCES location(id)
 );
 
-INSERT INTO role VALUES (1, 'Admin');
-INSERT INTO role VALUES (2, 'User');
-INSERT INTO "user" VALUES (1, 'ming', 'xiao', '2000-01-01', 'xiaoming@company.com', 'xiaoming', 'xiaoming123', 1);
-INSERT INTO "user" VALUES (2, 'hua', 'xiao', '2000-01-02', 'xiaohua@company.com', 'xiaohua', 'xiaohua123', 2);
-INSERT INTO email VALUES (1, 'xiaoming@company.com', 'xiaohua@company.com', 'Importing meeting later', 'Hello, We need to have a meeting later.', current_timestamp, false); 
+INSERT INTO public.role VALUES (1, 'Admin');
+INSERT INTO public.role VALUES (2, 'User');
+INSERT INTO public.user VALUES (1, 'ming', 'xiao', '2000-01-01', 'xiaoming@company.com', 'xiaoming', 'xiaoming123', 1);
+INSERT INTO public.user VALUES (2, 'hua', 'xiao', '2000-01-02', 'xiaohua@company.com', 'xiaohua', 'xiaohua123', 2);
+INSERT INTO public.email VALUES (1, 'xiaoming@company.com', 'xiaohua@company.com', 'Importing meeting later', 'Hello, We need to have a meeting later.', current_timestamp, false);
 
