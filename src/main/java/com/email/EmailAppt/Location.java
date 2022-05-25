@@ -1,6 +1,6 @@
 package com.email.EmailAppt;
 
-public enum location {
+public enum Location {
     ConferenceRoom,
     MeetingRoom
 }

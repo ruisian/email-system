@@ -1,6 +1,6 @@
 package com.email.EmailAppt;
 
-public enum emailAppt {
+public enum EmailAppt {
     Email,
     Appointment
 }

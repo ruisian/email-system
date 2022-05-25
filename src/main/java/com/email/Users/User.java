@@ -1,7 +1,6 @@
 package com.email.Users;
 
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class User {
     private int id;
@@ -12,11 +11,11 @@ public class User {
     private String username;
     private String password;
 
-    private role role;
+    private Role role;
     private Address address;
 
 
-    public User(int id, String firstname, String lastname, LocalDate dob, String email, String username, String password, role role) {
+    public User(int id, String firstname, String lastname, LocalDate dob, String email, String username, String password, Role role) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -50,7 +49,7 @@ public class User {
         return lastname;
     }
 
-    public com.email.Users.role getRole() {
+    public Role getRole() {
         return role;
     }
 

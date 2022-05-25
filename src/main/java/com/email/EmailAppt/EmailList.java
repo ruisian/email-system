@@ -1,7 +1,6 @@
 package com.email.EmailAppt;
 
 import com.email.App.HikariCPDataSource;
-import com.email.App.page;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,7 +9,7 @@ import java.sql.Statement;
 
 public class EmailList {
 
-    public static void ListEmails() {
+    public static void listEmails() {
         getEmails();
         return; //page.ListEmailsPage;
     }

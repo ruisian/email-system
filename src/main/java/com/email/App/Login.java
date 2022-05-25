@@ -5,7 +5,11 @@ import com.email.Users.User;
 import java.util.Scanner;
 
 public class Login {
-
+    // login logout are actions and should have base class/relationship between classes
+    // shared login between classes
+    // both use println
+    // base action class with show/print message
+    // extend base action class
     public static void main(String[] args) {
 
     }

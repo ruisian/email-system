@@ -1,6 +1,6 @@
 package com.email.App;
 
-public enum page {
+public enum Page {
     UserLoginPage,
     MainMenuPage,
     EmailMenuPage,

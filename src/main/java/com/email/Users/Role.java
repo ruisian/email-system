@@ -1,6 +1,6 @@
 package com.email.Users;
 
-public enum role
+public enum Role
 {
     User,
     Admin
