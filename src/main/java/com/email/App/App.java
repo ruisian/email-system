@@ -25,10 +25,6 @@ public class App {
         separate actions in class
         */
 
-//        User admin1 = new User(1, "ming", "xiao", LocalDate.of(2000,1,1), "xiaoming@company.com", "xiaoming", "xiaoming123", Role.Admin);
-//        User user1 = new User(2, "hua", "xiao", LocalDate.of(2000,1,2), "xiaohua@company.com", "xiaohua", "xiaohua123", Role.User);
-        //currentUser = admin1;
-
         Boolean isAdmin = false;
 
 
