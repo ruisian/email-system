@@ -55,7 +55,6 @@ public class App {
                     currentPage = MainMenu.display(currentUser, isAdmin);
                     break;
                 case EmailMenuPage:
-                    //System.out.println("Email menu");
                     prevPage = currentPage;
                     currentPage = EmailMenu.display(currentUser);
                     break;
@@ -64,11 +63,12 @@ public class App {
                     break;
                 case LogOutPage:
                     LogOut.display(currentUser);
-                    if(s.next().charAt(0) == 'y') {
-                        toQuit = true;
-                    } else if(s.next().charAt(0) == 'l') {
+                    char nextChar = s.next().charAt(0);
+                    if(nextChar == 'y') {
                         System.out.println("User logging out.");
                         currentPage = Page.UserLoginPage;
+                    } else if(nextChar == 'q') {
+                        toQuit = true;
                     } else {
                         currentPage = prevPage;
                     }

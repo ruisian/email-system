@@ -26,19 +26,19 @@ public class Login {
             currentUser = enterDetails(in, currentUser);
             if(currentUser != null) {
                 loggedIn = true;
+            } else {
+                System.out.println("Incorrect username or password, please try again.");
             }
         }
         return currentUser;
     }
     private static User enterDetails(Scanner in, User currentUser) throws SQLException {
-        while (currentUser == null) {
-            System.out.println("Enter your username and password");
-            System.out.print("username: ");
-            String user = in.nextLine();
-            System.out.print("password: ");
-            String passwd = in.nextLine();
-            currentUser = sendQuery(user, passwd);
-        }
+        System.out.println("Enter your username and password");
+        System.out.print("username: ");
+        String user = in.nextLine();
+        System.out.print("password: ");
+        String passwd = in.nextLine();
+        currentUser = sendQuery(user, passwd);
         return currentUser;
     }
 
