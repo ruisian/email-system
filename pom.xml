@@ -47,7 +47,7 @@
                     <execution>
                         <configuration>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.email.App.App</mainClass>
+                            <mainClass>com.email.app.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>

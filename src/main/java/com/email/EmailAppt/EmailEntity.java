@@ -1,8 +1,6 @@
 package com.email.EmailAppt;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 public abstract class EmailEntity {
     private int id;

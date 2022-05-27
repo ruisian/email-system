@@ -1,4 +1,4 @@
-package com.email.App;
+package com.email.app;
 
 public enum Page {
     UserLoginPage,

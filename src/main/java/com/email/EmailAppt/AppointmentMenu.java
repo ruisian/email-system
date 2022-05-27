@@ -1,6 +1,6 @@
 package com.email.EmailAppt;
 
-import com.email.App.Page;
+import com.email.app.Page;
 
 import java.util.Scanner;
 

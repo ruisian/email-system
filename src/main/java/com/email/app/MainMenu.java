@@ -1,4 +1,4 @@
-package com.email.App;
+package com.email.app;
 
 import com.email.Users.User;
 

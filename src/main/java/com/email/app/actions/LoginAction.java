@@ -1,38 +1,26 @@
-package com.email.App;
+package com.email.app.actions;
 
 import com.email.Users.Role;
 import com.email.Users.User;
+import com.email.app.HikariCPDataSource;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Login {
+public class LoginAction extends AuditableAction {
+    public LoginAction() {
+        super("Login Action");
+    }
+
     // login logout are actions and should have base class/relationship between classes
     // shared login between classes
     // both use println
     // base action class with show/print message
     // extend base action class
-    public static void main(String[] args) {
 
-    }
 
-    public static User login() throws SQLException {
-        Scanner in = new Scanner(System.in);
-        Boolean loggedIn = false;
-        User currentUser = null;
-        System.out.println("Welcome!");
-        while(!loggedIn) {
-            currentUser = enterDetails(in, currentUser);
-            if(currentUser != null) {
-                loggedIn = true;
-            } else {
-                System.out.println("Incorrect username or password, please try again.");
-            }
-        }
-        return currentUser;
-    }
-    private static User enterDetails(Scanner in, User currentUser) throws SQLException {
+    private User enterDetails(Scanner in, User currentUser) throws SQLException {
         System.out.println("Enter your username and password");
         System.out.print("username: ");
         String user = in.nextLine();
@@ -42,7 +30,7 @@ public class Login {
         return currentUser;
     }
 
-    private static User sendQuery(String username, String password) {
+    private User sendQuery(String username, String password) {
         String SQL = "SELECT * FROM public.user WHERE " + "username = ? AND password = ?"; //id, firstname, lastname, dob, email, username, password, role_id
         ResultSet res;
         User currentUser = null;
@@ -69,7 +57,7 @@ public class Login {
         return currentUser;
     }
 
-    private static String getRole(int id) {
+    private String getRole(int id) {
         String SQL = "SELECT name FROM public.role WHERE " + "id = ?";
         String role = null;
         try (Connection con = HikariCPDataSource.getConnection()) {
@@ -85,4 +73,26 @@ public class Login {
         return role;
     }
 
+    @Override
+    public Object executeAuditableAction() throws Exception{
+        Scanner in = new Scanner(System.in);
+        Boolean loggedIn = false;
+        User currentUser = null;
+        System.out.println("Welcome!");
+        while (!loggedIn) {
+            currentUser = enterDetails(in, currentUser);
+            if (currentUser != null) {
+                loggedIn = true;
+            } else {
+                System.out.println("Incorrect username or password, please try again.");
+            }
+        }
+        return currentUser;
+
+    }
+
+    @Override
+    public Object executeAuditableAction(Object o) {
+        return null;
+    }
 }

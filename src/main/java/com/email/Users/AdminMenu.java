@@ -1,6 +1,6 @@
 package com.email.Users;
 
-import com.email.App.Page;
+import com.email.app.Page;
 
 public class AdminMenu {
     public static Page display() {

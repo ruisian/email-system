@@ -1,6 +1,6 @@
 package com.email.EmailAppt;
 
-import com.email.App.HikariCPDataSource;
+import com.email.app.HikariCPDataSource;
 import com.email.Users.User;
 
 import java.sql.*;

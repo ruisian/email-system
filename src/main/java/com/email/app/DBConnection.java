@@ -1,4 +1,4 @@
-package com.email.App;
+package com.email.app;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
