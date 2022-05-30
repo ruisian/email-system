@@ -27,6 +27,7 @@ public class LoginAction extends AuditableAction {
         System.out.print("password: ");
         String passwd = in.nextLine();
         currentUser = sendQuery(user, passwd);
+        logger.info("Login result: " + currentUser);
         return currentUser;
     }
 

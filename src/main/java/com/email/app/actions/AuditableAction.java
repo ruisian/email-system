@@ -1,7 +1,7 @@
 package com.email.app.actions;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class AuditableAction implements ActionInterface{
 
@@ -9,7 +9,7 @@ public abstract class AuditableAction implements ActionInterface{
         this.auditMessage = auditMessage;
     }
 
-    private Logger logger  = LoggerFactory.getLogger(getClass());
+    protected Logger logger  = LogManager.getLogger(getClass());
     private String auditMessage;
     @Override
     public Object executeAction() throws Exception{
