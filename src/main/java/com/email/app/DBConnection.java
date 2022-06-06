@@ -1,6 +1,5 @@
-package com.email;
+package com.email.app;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
